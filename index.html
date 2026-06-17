@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arena Quiz Gamer</title>
+  <link rel="stylesheet" href="codigo/estilos/reset.css">
+  <link rel="stylesheet" href="codigo/estilos/variaveis.css">
+  <link rel="stylesheet" href="codigo/estilos/global.css">
+  <link rel="stylesheet" href="codigo/estilos/layout.css">
+  <link rel="stylesheet" href="codigo/estilos/componentes.css">
+  <link rel="stylesheet" href="codigo/estilos/telas.css">
+  <link rel="stylesheet" href="codigo/estilos/responsivo.css">
+</head>
+<body>
+  <div class="aplicativo">
+    <main class="conteudo">
+      <section id="tela-inicial" class="tela tela-inicial tela-ativa" aria-labelledby="titulo-inicial">
+        <header class="topo-app">
+          <div class="marca">
+            <img class="icone icone-medio" src="recursos/icones/icone-logo-arena.svg" alt="">
+            <div>
+              <h1 id="titulo-inicial">Arena Quiz</h1>
+              <p class="melhor-pontuacao">Melhor: <strong id="melhor-pontuacao">0 pts</strong></p>
+            </div>
+          </div>
+          <div class="linha-centro">
+            <button class="botao botao-icone" id="botao-tema" type="button" aria-label="Alternar tema">
+              <img class="icone" src="recursos/icones/icone-tecnologia.svg" alt="">
+            </button>
+            <div class="avatar" aria-label="Avatar do jogador">
+              <img class="icone" src="recursos/icones/icone-perfil.svg" alt="">
+            </div>
+          </div>
+        </header>
+
+        <article class="card card-destaque">
+          <div class="trofeu-hero">
+            <img class="icone icone-grande icone-rank" src="recursos/icones/icone-trofeu.svg" alt="">
+          </div>
+          <h2>Teste seus conhecimentos!</h2>
+          <p>Responda perguntas, vença desafios e suba no ranking.</p>
+          <button class="botao botao-primario" id="botao-comecar" type="button">Começar</button>
+        </article>
+
+        <section class="secao" aria-labelledby="titulo-atalhos">
+          <h2 id="titulo-atalhos">Atalhos</h2>
+          <div class="grade-atalhos">
+            <button class="card-atalho" id="atalho-categorias" type="button"><img class="icone" src="recursos/icones/icone-categoria.svg" alt=""><span>Categorias</span></button>
+            <button class="card-atalho" id="atalho-ranking" type="button"><img class="icone" src="recursos/icones/icone-ranking.svg" alt=""><span>Ranking</span></button>
+            <button class="card-atalho" id="atalho-desafios" type="button"><img class="icone" src="recursos/icones/icone-desafio.svg" alt=""><span>Desafios</span></button>
+          </div>
+        </section>
+
+        <section class="secao" aria-labelledby="titulo-estatisticas">
+          <h2 id="titulo-estatisticas">Suas estatísticas</h2>
+          <div class="grade-estatisticas">
+            <div class="card-estatistica"><span>Partidas jogadas</span><strong id="estatistica-partidas">0</strong></div>
+            <div class="card-estatistica"><span>Vitórias</span><strong id="estatistica-vitorias">0</strong></div>
+            <div class="card-estatistica"><span>Acertos</span><strong id="estatistica-acertos">0</strong></div>
+            <div class="card-estatistica"><span>Melhor sequência</span><strong id="estatistica-sequencia">0</strong></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="tela-modo" class="tela tela-modo" aria-labelledby="titulo-modo">
+        <header class="topo-tela">
+          <button class="botao botao-icone" type="button" data-voltar="tela-inicial" aria-label="Voltar"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <h2 id="titulo-modo">Escolha o modo</h2>
+          <span></span>
+        </header>
+        <article class="card-modo">
+          <img class="icone icone-grande" src="recursos/icones/icone-esports.svg" alt="">
+          <h3>Modo Solo</h3>
+          <p class="texto-suave">Jogue sozinho, acumule pontos e entre no ranking.</p>
+          <button class="botao botao-primario" id="botao-solo" type="button">Jogar Solo</button>
+        </article>
+        <article class="card-modo">
+          <img class="icone icone-grande" src="recursos/icones/icone-desafio.svg" alt="">
+          <h3>Duelo Local</h3>
+          <p class="texto-suave">Dois jogadores disputam no mesmo navegador.</p>
+          <button class="botao botao-primario" id="botao-duelo" type="button">Iniciar Duelo</button>
+        </article>
+      </section>
+
+      <section id="tela-jogadores" class="tela tela-jogadores" aria-labelledby="titulo-jogadores">
+        <header class="topo-tela">
+          <button class="botao botao-icone" type="button" data-voltar="tela-modo" aria-label="Voltar"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <h2 id="titulo-jogadores">Cadastro</h2>
+          <span></span>
+        </header>
+        <form class="card painel-formulario" id="formulario-jogadores" novalidate>
+          <div class="campo">
+            <label for="apelido-jogador-um" id="label-jogador-um">Apelido do jogador</label>
+            <input id="apelido-jogador-um" name="apelidoJogadorUm" maxlength="16" autocomplete="nickname">
+            <p class="erro-campo" id="erro-jogador-um"></p>
+          </div>
+          <div class="campo" id="campo-jogador-dois">
+            <label for="apelido-jogador-dois">Apelido do Jogador 2</label>
+            <input id="apelido-jogador-dois" name="apelidoJogadorDois" maxlength="16" autocomplete="off">
+            <p class="erro-campo" id="erro-jogador-dois"></p>
+          </div>
+          <p class="mensagem-erro" id="erro-jogadores"></p>
+          <button class="botao botao-primario" type="submit">Continuar</button>
+        </form>
+      </section>
+
+      <section id="tela-categorias" class="tela tela-categorias" aria-labelledby="titulo-categorias">
+        <header class="topo-tela">
+          <button class="botao botao-icone" type="button" data-voltar="tela-modo" aria-label="Voltar"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <h2 id="titulo-categorias">Escolher categoria</h2>
+          <span></span>
+        </header>
+        <div class="linha-busca">
+          <input class="busca" id="busca-categorias" placeholder="Buscar categorias..." aria-label="Buscar categorias">
+          <button class="botao" type="button">Filtros</button>
+        </div>
+        <h3>Escolha uma categoria</h3>
+        <div class="grade-categorias" id="lista-categorias"></div>
+        <section class="secao">
+          <h3>Dificuldade</h3>
+          <div class="grade-opcoes" id="opcoes-dificuldade"></div>
+        </section>
+        <section class="secao">
+          <h3>Número de perguntas</h3>
+          <div class="grade-opcoes" id="opcoes-quantidade"></div>
+        </section>
+        <section class="secao">
+          <h3>Tempo por pergunta</h3>
+          <div class="grade-opcoes" id="opcoes-tempo"></div>
+        </section>
+        <p class="mensagem-erro" id="erro-configuracao"></p>
+        <button class="botao botao-primario" id="botao-iniciar-quiz" type="button">Começar quiz</button>
+      </section>
+
+      <section id="tela-pergunta" class="tela tela-pergunta" aria-labelledby="contador-pergunta">
+        <header class="topo-tela">
+          <button class="botao botao-icone" id="botao-sair-quiz" type="button" aria-label="Sair do quiz"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <div>
+            <h2 id="contador-pergunta">Pergunta 1/5</h2>
+            <p class="texto-suave" id="pontuacao-atual">0 pts</p>
+          </div>
+          <div class="cronometro"><span id="tempo-restante">15</span></div>
+        </header>
+        <div id="placar-duelo" class="placar oculto"></div>
+        <p class="texto-suave" id="vez-jogador"></p>
+        <article class="card painel-pergunta">
+          <div class="linha-entre">
+            <span class="pergunta-categoria" id="categoria-pergunta">Games</span>
+            <img class="icone" src="recursos/icones/icone-combo.svg" alt="">
+          </div>
+          <h3 class="texto-pergunta" id="texto-pergunta">Carregando perguntas...</h3>
+          <div class="lista-alternativas" id="lista-alternativas"></div>
+        </article>
+        <section class="secao">
+          <div class="linha-entre"><span>Progresso da partida</span><strong id="porcentagem-progresso">0%</strong></div>
+          <div class="barra-progresso"><span id="barra-progresso"></span></div>
+        </section>
+        <div class="acoes-quiz">
+          <button class="botao" id="botao-pular" type="button"><img class="icone icone-pequeno" src="recursos/icones/icone-pular.svg" alt="">Pular</button>
+          <button class="botao" id="botao-dica" type="button"><img class="icone icone-pequeno" src="recursos/icones/icone-dica.svg" alt="">Dica</button>
+          <button class="botao" id="botao-som" type="button"><img class="icone icone-pequeno" src="recursos/icones/icone-som.svg" alt="">Som</button>
+        </div>
+      </section>
+
+      <section id="tela-feedback" class="tela tela-feedback" aria-labelledby="titulo-feedback">
+        <article class="card painel-feedback">
+          <div class="linha-centro" id="icone-feedback"></div>
+          <h2 id="titulo-feedback">Resposta correta!</h2>
+          <div id="conteudo-feedback" class="secao"></div>
+          <button class="botao botao-primario" id="botao-proxima-pergunta" type="button">Próxima pergunta</button>
+        </article>
+      </section>
+
+      <section id="tela-resultado" class="tela tela-resultado" aria-labelledby="titulo-resultado">
+        <article class="card painel-resultado">
+          <img class="icone icone-grande icone-rank" src="recursos/icones/icone-trofeu.svg" alt="">
+          <h2 id="titulo-resultado">Resultado final</h2>
+          <div id="conteudo-resultado" class="secao"></div>
+          <button class="botao botao-primario" id="botao-jogar-novamente" type="button">Jogar novamente</button>
+          <button class="botao botao-secundario" id="botao-voltar-inicio" type="button">Voltar ao início</button>
+        </article>
+      </section>
+
+      <section id="tela-ranking" class="tela tela-ranking" aria-labelledby="titulo-ranking">
+        <header class="topo-tela">
+          <button class="botao botao-icone" type="button" data-voltar="tela-inicial" aria-label="Voltar"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <h2 id="titulo-ranking">Ranking Local</h2>
+          <img class="icone icone-rank" src="recursos/icones/icone-ranking.svg" alt="">
+        </header>
+        <article class="card painel-ranking">
+          <div class="lista-ranking" id="lista-ranking"></div>
+          <button class="botao botao-secundario" id="botao-limpar-dados" type="button">Limpar dados de teste</button>
+        </article>
+      </section>
+    </main>
+
+    <nav class="rodape-navegacao" aria-label="Navegação inferior">
+      <button class="botao-nav ativo" type="button" data-navegar="tela-inicial"><img class="icone icone-pequeno" src="recursos/icones/icone-inicio.svg" alt="">Início</button>
+      <button class="botao-nav" type="button" data-navegar="tela-categorias"><img class="icone icone-pequeno" src="recursos/icones/icone-explorar.svg" alt="">Explorar</button>
+      <button class="botao-nav" type="button" data-navegar="tela-ranking"><img class="icone icone-pequeno" src="recursos/icones/icone-ranking.svg" alt="">Ranking</button>
+      <button class="botao-nav" type="button" data-navegar="tela-inicial"><img class="icone icone-pequeno" src="recursos/icones/icone-perfil.svg" alt="">Perfil</button>
+    </nav>
+  </div>
+
+  <script src="codigo/scripts/armazenamento.js" defer></script>
+  <script src="codigo/scripts/ranking.js" defer></script>
+  <script src="codigo/scripts/tema.js" defer></script>
+  <script src="codigo/scripts/validacao.js" defer></script>
+  <script src="codigo/scripts/perguntas.js" defer></script>
+  <script src="codigo/scripts/interface.js" defer></script>
+  <script src="codigo/scripts/duelo.js" defer></script>
+  <script src="codigo/scripts/jogo.js" defer></script>
+  <script src="codigo/scripts/principal.js" defer></script>
+</body>
+</html>

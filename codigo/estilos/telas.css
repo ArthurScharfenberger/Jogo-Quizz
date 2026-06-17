@@ -1,0 +1,121 @@
+.melhor-pontuacao {
+  font-size: 0.78rem;
+  color: var(--cor-texto-suave);
+  text-align: right;
+}
+
+.trofeu-hero {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: rgba(138, 44, 255, 0.16);
+}
+
+.painel-formulario,
+.painel-pergunta,
+.painel-feedback,
+.painel-resultado,
+.painel-ranking {
+  padding: 18px;
+}
+
+.linha-busca {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.placar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.placar div {
+  padding: 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  background: var(--cor-card-transparente);
+}
+
+.cronometro {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--cor-primaria);
+  display: grid;
+  place-items: center;
+  color: var(--cor-texto);
+  box-shadow: var(--sombra-roxa);
+}
+
+.pergunta-categoria {
+  color: var(--cor-destaque);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.texto-pergunta {
+  margin-top: 10px;
+  font-size: 1.32rem;
+  line-height: 1.25;
+}
+
+.acoes-quiz {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.acoes-quiz .botao {
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 0.82rem;
+}
+
+.feedback-correto {
+  color: var(--cor-correto);
+}
+
+.feedback-errado {
+  color: var(--cor-errado);
+}
+
+.lista-ranking {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.item-ranking {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  background: var(--cor-card-transparente);
+}
+
+.posicao-ranking {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #12081f;
+  background: var(--cor-rank);
+  font-weight: 800;
+}
+
+.oculto {
+  display: none !important;
+}

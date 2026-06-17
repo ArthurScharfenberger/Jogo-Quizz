@@ -1,0 +1,69 @@
+body {
+  color: var(--cor-texto);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(138, 44, 255, 0.25), transparent 32rem),
+    #020106;
+}
+
+.aplicativo {
+  position: relative;
+  width: min(100%, 430px);
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--gradiente-fundo);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.65);
+}
+
+.conteudo {
+  min-height: 100vh;
+  padding: 22px 18px calc(var(--altura-nav) + 22px);
+}
+
+.tela {
+  display: none;
+  animation: entradaTela 0.28s ease both;
+}
+
+.tela-ativa {
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-alerta);
+  outline-offset: 3px;
+}
+
+.icone {
+  width: 24px;
+  height: 24px;
+  stroke: var(--cor-primaria);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 8px rgba(138, 44, 255, 0.45));
+}
+
+.icone-pequeno { width: 18px; height: 18px; }
+.icone-medio { width: 28px; height: 28px; }
+.icone-grande { width: 56px; height: 56px; }
+.icone-correto { filter: hue-rotate(95deg) saturate(1.8) drop-shadow(0 0 8px rgba(53, 255, 122, 0.45)); }
+.icone-errado { filter: hue-rotate(55deg) saturate(1.7) drop-shadow(0 0 8px rgba(255, 59, 107, 0.45)); }
+.icone-rank { filter: hue-rotate(145deg) saturate(1.8) drop-shadow(0 0 8px rgba(245, 185, 66, 0.45)); }
+
+.texto-suave {
+  color: var(--cor-texto-suave);
+}
+
+.erro-campo,
+.mensagem-erro {
+  min-height: 20px;
+  color: var(--cor-errado);
+  font-size: 0.84rem;
+}
+
+@keyframes entradaTela {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}

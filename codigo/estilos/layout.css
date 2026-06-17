@@ -1,0 +1,87 @@
+.topo-app,
+.topo-tela,
+.linha-centro,
+.linha-entre {
+  display: flex;
+  align-items: center;
+}
+
+.topo-app,
+.topo-tela,
+.linha-entre {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topo-app {
+  margin-bottom: 22px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marca h1,
+.topo-tela h2 {
+  font-size: 1.18rem;
+  letter-spacing: 0;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--gradiente-card);
+  display: grid;
+  place-items: center;
+}
+
+.grade-atalhos,
+.grade-opcoes,
+.grade-estatisticas,
+.grade-configuracoes {
+  display: grid;
+  gap: 12px;
+}
+
+.grade-atalhos,
+.grade-estatisticas {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grade-estatisticas {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grade-configuracoes {
+  grid-template-columns: 1fr;
+}
+
+.secao {
+  margin-top: 22px;
+}
+
+.secao h2,
+.secao h3 {
+  margin-bottom: 12px;
+}
+
+.rodape-navegacao {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: min(100%, 430px);
+  height: var(--altura-nav);
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 10px 12px 14px;
+  background: rgba(10, 4, 18, 0.92);
+  border-top: 1px solid var(--cor-borda);
+  backdrop-filter: blur(16px);
+  z-index: 20;
+}
