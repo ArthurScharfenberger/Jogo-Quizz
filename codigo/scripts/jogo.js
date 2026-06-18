@@ -7,6 +7,7 @@ const estadoQuiz = {
   quantidadePerguntas: 0,
   tempoPorPergunta: 15,
   perguntasSelecionadas: [],
+  perguntasGeradas: [],
   indicePerguntaAtual: 0,
   pontuacaoAtual: 0,
   acertos: 0,
@@ -30,11 +31,13 @@ function selecionarModo(modoSelecionado) {
 }
 
 function prepararPartida() {
-  const perguntasSelecionadas = selecionarPerguntas(
-    estadoQuiz.categoriaSelecionada,
-    estadoQuiz.dificuldadeSelecionada,
-    estadoQuiz.quantidadePerguntas
-  );
+  const perguntasSelecionadas = estadoQuiz.perguntasGeradas.length
+    ? estadoQuiz.perguntasGeradas
+    : selecionarPerguntas(
+      estadoQuiz.categoriaSelecionada,
+      estadoQuiz.dificuldadeSelecionada,
+      estadoQuiz.quantidadePerguntas
+    );
   if (!perguntasSelecionadas.length) {
     exibirMensagemErro("#erro-configuracao", "Não encontramos perguntas suficientes para essa configuração.");
     return;

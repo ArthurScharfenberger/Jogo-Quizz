@@ -6,33 +6,37 @@
 }
 
 .card-destaque {
+  display: grid;
+  gap: 16px;
   padding: 22px;
   background: var(--gradiente-card), var(--cor-card);
 }
 
 .card-destaque h2 {
   max-width: 260px;
-  margin-top: 18px;
-  font-size: 1.9rem;
-  line-height: 1.05;
+  font-size: clamp(1.65rem, 8vw, 1.9rem);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
 }
 
 .card-destaque p {
-  margin: 10px 0 20px;
   color: var(--cor-texto-suave);
 }
 
 .botao {
   min-height: 48px;
   border-radius: 14px;
-  padding: 0 18px;
+  padding: 10px 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
+  min-width: 0;
   color: var(--cor-texto);
   background: var(--cor-card-transparente);
   border: 1px solid var(--cor-borda);
+  line-height: 1.15;
+  text-align: center;
   transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -75,6 +79,8 @@
   background: transparent;
   border-radius: 14px;
   font-size: 0.72rem;
+  line-height: 1.1;
+  overflow: hidden;
 }
 
 .botao-nav.ativo {
@@ -92,13 +98,20 @@
   border-radius: 16px;
   color: var(--cor-texto);
   background: var(--cor-card-transparente);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .card-atalho {
-  min-height: 98px;
+  min-height: 96px;
   display: grid;
   align-content: space-between;
   text-align: left;
+}
+
+.card-atalho span,
+.card-estatistica span {
+  line-height: 1.2;
 }
 
 .card-estatistica strong {
@@ -108,12 +121,21 @@
 }
 
 .card-modo {
+  display: grid;
+  gap: 12px;
   margin-bottom: 14px;
 }
 
 .card-modo h3,
-.card-categoria h3 {
-  margin: 12px 0 6px;
+.card-modo p,
+.card-categoria h3,
+.card-categoria p,
+.card-opcao p {
+  margin: 0;
+}
+
+.card-modo .botao {
+  margin-top: 4px;
 }
 
 .campo {
@@ -141,6 +163,14 @@
 .card-categoria {
   position: relative;
   width: 100%;
+  display: grid;
+  gap: 8px;
+  text-align: left;
+}
+
+.card-opcao {
+  display: grid;
+  gap: 6px;
   text-align: left;
 }
 
@@ -148,6 +178,33 @@
 .card-opcao.selecionado {
   border-color: var(--cor-primaria);
   box-shadow: var(--sombra-roxa);
+}
+
+.opcao-groq {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin: 20px 0 8px;
+  padding: 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  background: var(--cor-card-transparente);
+}
+
+.opcao-groq input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--cor-primaria);
+}
+
+.opcao-groq span {
+  display: grid;
+  gap: 4px;
+}
+
+.opcao-groq small {
+  color: var(--cor-texto-suave);
 }
 
 .selo-check {
@@ -172,6 +229,8 @@
   min-height: 58px;
   justify-content: flex-start;
   text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .letra {

@@ -100,14 +100,26 @@ function aoSelecionarTempo(evento) {
 
 async function aoIniciarQuiz() {
   exibirMensagemErro("#erro-configuracao", "Carregando perguntas...");
+  estadoQuiz.perguntasGeradas = [];
   if (!perguntasDisponiveis.length) await carregarPerguntas();
   const erro = validarConfiguracao(estadoQuiz);
   if (erro) {
     exibirMensagemErro("#erro-configuracao", erro);
     return;
   }
-  exibirMensagemErro("#erro-configuracao", "");
-  prepararPartida();
+  try {
+    if (document.querySelector("#usar-groq").checked) {
+      exibirMensagemErro("#erro-configuracao", "Gerando perguntas com Groq...");
+      estadoQuiz.perguntasGeradas = await gerarPerguntasComGroq(estadoQuiz);
+    }
+    exibirMensagemErro("#erro-configuracao", "");
+    prepararPartida();
+  } catch (erroGroq) {
+    console.warn("Groq indisponivel. Usando perguntas locais.", erroGroq);
+    estadoQuiz.perguntasGeradas = [];
+    exibirMensagemErro("#erro-configuracao", "Groq indisponivel. Usando perguntas locais...");
+    prepararPartida();
+  }
 }
 
 function mostrarDica() {

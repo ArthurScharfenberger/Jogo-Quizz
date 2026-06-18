@@ -4,13 +4,12 @@
   }
 
   .aplicativo {
-    min-height: calc(100vh - 36px);
+    height: calc(100dvh - 36px);
     border: 1px solid rgba(192, 132, 252, 0.22);
     border-radius: 28px;
   }
 
   .rodape-navegacao {
-    bottom: 18px;
     border-radius: 0 0 28px 28px;
   }
 }
@@ -20,5 +19,43 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .conteudo {
+    padding-inline: 14px;
+  }
+
+  .topo-app,
+  .topo-tela,
+  .linha-entre {
+    gap: 8px;
+  }
+
+  .card-destaque,
+  .painel-formulario,
+  .painel-pergunta,
+  .painel-feedback,
+  .painel-resultado,
+  .painel-ranking {
+    padding: 16px;
+  }
+
+  .grade-atalhos,
+  .grade-estatisticas {
+    gap: 10px;
+  }
+
+  .card-atalho,
+  .card-estatistica,
+  .card-modo,
+  .card-categoria,
+  .card-opcao {
+    padding: 12px;
+  }
+
+  .botao {
+    padding-inline: 12px;
   }
 }

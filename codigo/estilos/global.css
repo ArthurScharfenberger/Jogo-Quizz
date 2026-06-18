@@ -1,23 +1,52 @@
 body {
+  overflow: hidden;
   color: var(--cor-texto);
   background:
     radial-gradient(circle at 50% 0%, rgba(138, 44, 255, 0.25), transparent 32rem),
     #020106;
 }
 
+h1,
+h2,
+h3,
+p,
+strong,
+span,
+button,
+input {
+  line-height: 1.25;
+}
+
 .aplicativo {
   position: relative;
   width: min(100%, 430px);
-  min-height: 100vh;
+  height: 100dvh;
+  min-height: 0;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--gradiente-fundo);
   box-shadow: 0 0 80px rgba(0, 0, 0, 0.65);
 }
 
 .conteudo {
-  min-height: 100vh;
-  padding: 22px 18px calc(var(--altura-nav) + 22px);
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 22px 18px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cor-borda) transparent;
+}
+
+.conteudo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.conteudo::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--cor-borda);
 }
 
 .tela {
@@ -35,6 +64,7 @@ body {
 }
 
 .icone {
+  flex: 0 0 auto;
   width: 24px;
   height: 24px;
   stroke: var(--cor-primaria);

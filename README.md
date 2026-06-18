@@ -23,6 +23,19 @@ O projeto foi pensado para adolescentes e jovens adultos que gostam de videogame
 
 O projeto também pode ser hospedado como site estático, pois não usa backend, banco de dados real nem dependências externas.
 
+## API Groq opcional
+
+O jogo pode gerar perguntas com a Groq quando a opção `Gerar perguntas com Groq` estiver marcada na tela de categorias. A chave fica apenas no backend local, nunca no navegador.
+
+1. Copie `.env.example` para `.env`.
+2. Preencha `GROQ_API_KEY` no `.env`.
+3. Instale Node.js 18 ou superior.
+4. Rode `npm install`.
+5. Rode `npm run api`.
+6. Mantenha o Live Server aberto para o `index.html`.
+
+O backend expõe `POST /api/perguntas` em `http://localhost:3000`. Se a opção da Groq não estiver marcada, o jogo usa apenas `dados/perguntas.json`.
+
 ## Modos de jogo
 
 No Modo Solo, um jogador informa o apelido, escolhe categoria, dificuldade, quantidade de perguntas e tempo por pergunta. O sistema calcula pontos por resposta correta, bônus de velocidade e bônus de sequência. Ao final, o resultado é salvo no ranking local.

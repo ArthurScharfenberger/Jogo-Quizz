@@ -2,22 +2,53 @@
 .topo-tela,
 .linha-centro,
 .linha-entre {
-  display: flex;
   align-items: center;
 }
 
 .topo-app,
-.topo-tela,
+.linha-centro,
+.linha-entre {
+  display: flex;
+}
+
+.topo-app,
 .linha-entre {
   justify-content: space-between;
   gap: 12px;
+}
+
+.linha-centro {
+  gap: 8px;
 }
 
 .topo-app {
   margin-bottom: 22px;
 }
 
+.topo-tela {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.topo-tela > * {
+  min-width: 0;
+}
+
+.topo-tela > .botao-icone,
+.topo-tela > .icone,
+.topo-tela > span {
+  justify-self: center;
+}
+
+.topo-tela > span {
+  width: 44px;
+  height: 44px;
+}
+
 .marca {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -25,8 +56,20 @@
 
 .marca h1,
 .topo-tela h2 {
+  min-width: 0;
   font-size: 1.18rem;
   letter-spacing: 0;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.marca h1 {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.topo-tela h2 {
+  text-align: center;
 }
 
 .avatar {
@@ -42,7 +85,8 @@
 .grade-atalhos,
 .grade-opcoes,
 .grade-estatisticas,
-.grade-configuracoes {
+.grade-configuracoes,
+.grade-categorias {
   display: grid;
   gap: 12px;
 }
@@ -70,12 +114,11 @@
 }
 
 .rodape-navegacao {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  width: min(100%, 430px);
+  position: relative;
+  left: 0;
+  flex: 0 0 var(--altura-nav);
+  width: 100%;
   height: var(--altura-nav);
-  transform: translateX(-50%);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;

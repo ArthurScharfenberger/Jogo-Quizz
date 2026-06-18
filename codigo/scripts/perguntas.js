@@ -1,4 +1,5 @@
 let perguntasDisponiveis = [];
+const urlApiGroq = "http://localhost:3000/api/perguntas";
 
 const perguntasReserva = [
   { id: 901, categoria: "Games", dificuldade: "facil", pergunta: "Qual item costuma restaurar vida em muitos jogos de aventura?", alternativas: ["Mapa", "Poção", "Chave", "Moeda"], respostaCorreta: "Poção", explicacao: "Poções são usadas em muitos jogos para recuperar vida ou energia." },
@@ -35,4 +36,20 @@ function selecionarPerguntas(categoriaSelecionada, dificuldadeSelecionada, quant
   const base = filtradas.length >= quantidadePerguntas ? filtradas : mesmaCategoria;
   if (base.length < quantidadePerguntas) return [];
   return embaralharLista(base).slice(0, quantidadePerguntas);
+}
+
+async function gerarPerguntasComGroq(configuracao) {
+  const resposta = await fetch(urlApiGroq, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      categoria: configuracao.categoriaSelecionada,
+      dificuldade: configuracao.dificuldadeSelecionada,
+      quantidade: configuracao.quantidadePerguntas
+    })
+  });
+  const dados = await resposta.json();
+  if (!resposta.ok) throw new Error(dados.erro || "Nao foi possivel gerar perguntas com Groq.");
+  if (!Array.isArray(dados.perguntas) || !dados.perguntas.length) throw new Error("A Groq nao retornou perguntas.");
+  return dados.perguntas;
 }
