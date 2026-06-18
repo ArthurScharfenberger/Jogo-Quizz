@@ -14,11 +14,39 @@
   }
 }
 
+@media (min-width: 520px) {
+  .aplicativo {
+    width: min(100%, 500px);
+  }
+
+  .conteudo {
+    padding-inline: 24px;
+  }
+}
+
 @media (min-width: 390px) {
   .grade-categorias {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+}
+
+@media (max-width: 389px) {
+  .grade-atalhos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-atalho {
+    min-height: 84px;
+  }
+
+  .linha-busca {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-busca .botao {
+    width: 100%;
   }
 }
 
@@ -35,10 +63,12 @@
 
   .card-destaque,
   .painel-formulario,
+  .painel-acesso,
   .painel-pergunta,
   .painel-feedback,
   .painel-resultado,
-  .painel-ranking {
+  .painel-ranking,
+  .painel-perfil {
     padding: 16px;
   }
 
@@ -57,5 +87,83 @@
 
   .botao {
     padding-inline: 12px;
+  }
+
+  .topo-tela {
+    grid-template-columns: minmax(40px, auto) minmax(0, 1fr) minmax(40px, auto);
+  }
+
+  .botao-icone {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cronometro {
+    width: 48px;
+    height: 48px;
+  }
+
+  .acoes-quiz {
+    grid-template-columns: 1fr;
+  }
+
+  .acoes-quiz .botao {
+    min-height: 42px;
+  }
+
+  .item-ranking {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .item-ranking > strong:last-child {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+@media (max-width: 330px) {
+  .conteudo {
+    padding: 18px 12px 20px;
+  }
+
+  .topo-app {
+    align-items: flex-start;
+  }
+
+  .marca {
+    gap: 8px;
+  }
+
+  .marca h1,
+  .topo-tela h2 {
+    font-size: 1.02rem;
+  }
+
+  .grade-atalhos,
+  .grade-estatisticas,
+  .grade-opcoes,
+  .grade-categorias {
+    grid-template-columns: 1fr;
+  }
+
+  .abas-acesso {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-cabecalho {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .avatar-grande {
+    justify-self: center;
+  }
+
+  .rodape-navegacao {
+    padding-inline: 6px;
+  }
+
+  .botao-nav {
+    font-size: 0.66rem;
   }
 }

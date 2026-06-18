@@ -4,13 +4,27 @@ function iniciarAplicacao() {
   renderizarOpcoes();
   renderizarRanking();
   atualizarTextosIniciais();
+  atualizarPerfil();
   carregarPerguntas();
   configurarEventos();
 }
 
 function configurarEventos() {
   document.querySelector("#botao-tema").addEventListener("click", alternarTema);
+  document.querySelector("#botao-tema-acesso").addEventListener("click", alternarTema);
+  document.querySelector("#botao-tema-perfil").addEventListener("click", alternarTema);
+  document.querySelector("#botao-perfil").addEventListener("click", () => {
+    atualizarPerfil();
+    mostrarTela("tela-perfil");
+  });
   document.querySelector("#botao-comecar").addEventListener("click", () => mostrarTela("tela-modo"));
+  document.querySelectorAll("[data-auth-tab]").forEach((botao) => {
+    botao.addEventListener("click", () => alternarFormularioAcesso(botao.dataset.authTab));
+  });
+  document.querySelectorAll("[data-auth-form]").forEach((formulario) => {
+    formulario.addEventListener("submit", aoEntrarDemo);
+  });
+  document.querySelector("#botao-gmail").addEventListener("click", aoEntrarDemo);
   document.querySelector("#atalho-categorias").addEventListener("click", () => mostrarTela("tela-categorias"));
   document.querySelector("#atalho-ranking").addEventListener("click", () => {
     renderizarRanking();
@@ -27,6 +41,7 @@ function configurarEventos() {
   document.querySelectorAll("[data-navegar]").forEach((botao) => {
     botao.addEventListener("click", () => {
       if (botao.dataset.navegar === "tela-ranking") renderizarRanking();
+      if (botao.dataset.navegar === "tela-perfil") atualizarPerfil();
       mostrarTela(botao.dataset.navegar);
     });
   });
@@ -49,6 +64,32 @@ function configurarEventos() {
   document.querySelector("#botao-jogar-novamente").addEventListener("click", prepararPartida);
   document.querySelector("#botao-voltar-inicio").addEventListener("click", () => mostrarTela("tela-inicial"));
   document.querySelector("#botao-limpar-dados").addEventListener("click", aoLimparDados);
+  document.querySelector("#botao-sair-conta").addEventListener("click", () => mostrarTela("tela-acesso"));
+}
+
+function alternarFormularioAcesso(tipo) {
+  document.querySelectorAll("[data-auth-tab]").forEach((botao) => {
+    botao.classList.toggle("ativo", botao.dataset.authTab === tipo);
+  });
+  document.querySelectorAll("[data-auth-form]").forEach((formulario) => {
+    formulario.classList.toggle("oculto", formulario.dataset.authForm !== tipo);
+  });
+}
+
+function aoEntrarDemo(evento) {
+  evento.preventDefault();
+  atualizarPerfil();
+  mostrarTela("tela-inicial");
+}
+
+function atualizarPerfil() {
+  const estatisticas = buscarEstatisticas();
+  const ultimoApelido = buscarUltimoApelido();
+  document.querySelector("#perfil-nome").textContent = ultimoApelido || "Jogador Arena";
+  document.querySelector("#perfil-melhor-pontuacao").textContent = `${buscarMelhorPontuacao()} pts`;
+  document.querySelector("#perfil-partidas").textContent = estatisticas.partidasJogadas;
+  document.querySelector("#perfil-acertos").textContent = estatisticas.totalAcertos;
+  document.querySelector("#perfil-sequencia").textContent = estatisticas.maiorSequencia;
 }
 
 function aoEnviarJogadores(evento) {
@@ -99,25 +140,19 @@ function aoSelecionarTempo(evento) {
 }
 
 async function aoIniciarQuiz() {
-  exibirMensagemErro("#erro-configuracao", "Carregando perguntas...");
+  exibirMensagemErro("#erro-configuracao", "");
   estadoQuiz.perguntasGeradas = [];
   if (!perguntasDisponiveis.length) await carregarPerguntas();
   const erro = validarConfiguracao(estadoQuiz);
   if (erro) {
-    exibirMensagemErro("#erro-configuracao", erro);
     return;
   }
   try {
-    if (document.querySelector("#usar-groq").checked) {
-      exibirMensagemErro("#erro-configuracao", "Gerando perguntas com Groq...");
-      estadoQuiz.perguntasGeradas = await gerarPerguntasComGroq(estadoQuiz);
-    }
-    exibirMensagemErro("#erro-configuracao", "");
+    estadoQuiz.perguntasGeradas = await gerarPerguntasComGroq(estadoQuiz);
     prepararPartida();
   } catch (erroGroq) {
     console.warn("Groq indisponivel. Usando perguntas locais.", erroGroq);
     estadoQuiz.perguntasGeradas = [];
-    exibirMensagemErro("#erro-configuracao", "Groq indisponivel. Usando perguntas locais...");
     prepararPartida();
   }
 }
@@ -133,6 +168,7 @@ function aoLimparDados() {
   limparDadosDeTeste();
   renderizarRanking();
   atualizarTextosIniciais();
+  atualizarPerfil();
 }
 
 document.addEventListener("DOMContentLoaded", iniciarAplicacao);

@@ -13,9 +13,70 @@
   <link rel="stylesheet" href="codigo/estilos/responsivo.css">
 </head>
 <body>
-  <div class="aplicativo">
+  <div class="aplicativo acesso-ativo">
     <main class="conteudo">
-      <section id="tela-inicial" class="tela tela-inicial tela-ativa" aria-labelledby="titulo-inicial">
+      <section id="tela-acesso" class="tela tela-acesso tela-ativa" aria-labelledby="titulo-acesso">
+        <header class="topo-app">
+          <div class="marca">
+            <img class="icone icone-medio" src="recursos/icones/icone-logo-arena.svg" alt="">
+            <div>
+              <h1 id="titulo-acesso">Arena Quiz</h1>
+              <p class="melhor-pontuacao">Acesso demonstrativo</p>
+            </div>
+          </div>
+          <button class="botao botao-icone" id="botao-tema-acesso" type="button" aria-label="Alternar tema">
+            <img class="icone" src="recursos/icones/icone-tecnologia.svg" alt="">
+          </button>
+        </header>
+
+        <article class="card painel-acesso">
+          <div class="trofeu-hero">
+            <img class="icone icone-grande icone-rank" src="recursos/icones/icone-perfil.svg" alt="">
+          </div>
+          <div>
+            <h2>Entre na arena</h2>
+            <p class="texto-suave">Acesse seu perfil para jogar, salvar pontuações e acompanhar o ranking.</p>
+          </div>
+
+          <div class="abas-acesso" role="tablist" aria-label="Acesso">
+            <button class="aba-acesso ativo" type="button" data-auth-tab="login">Login</button>
+            <button class="aba-acesso" type="button" data-auth-tab="cadastro">Cadastro</button>
+          </div>
+
+          <form class="formulario-acesso" id="formulario-login" data-auth-form="login">
+            <div class="campo">
+              <label for="email-login">E-mail</label>
+              <input id="email-login" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="senha-login">Senha</label>
+              <input id="senha-login" name="senha" type="password" autocomplete="current-password">
+            </div>
+            <button class="botao botao-primario" type="submit">Entrar</button>
+          </form>
+
+          <form class="formulario-acesso oculto" id="formulario-cadastro" data-auth-form="cadastro">
+            <div class="campo">
+              <label for="nome-cadastro">Nome</label>
+              <input id="nome-cadastro" name="nome" autocomplete="name">
+            </div>
+            <div class="campo">
+              <label for="email-cadastro">E-mail</label>
+              <input id="email-cadastro" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="senha-cadastro">Senha</label>
+              <input id="senha-cadastro" name="senha" type="password" autocomplete="new-password">
+            </div>
+            <button class="botao botao-primario" type="submit">Criar conta</button>
+          </form>
+
+          <div class="divisor-acesso"><span>ou</span></div>
+          <button class="botao botao-gmail" id="botao-gmail" type="button"><span class="marca-gmail">G</span>Continuar com Gmail</button>
+        </article>
+      </section>
+
+      <section id="tela-inicial" class="tela tela-inicial" aria-labelledby="titulo-inicial">
         <header class="topo-app">
           <div class="marca">
             <img class="icone icone-medio" src="recursos/icones/icone-logo-arena.svg" alt="">
@@ -28,9 +89,9 @@
             <button class="botao botao-icone" id="botao-tema" type="button" aria-label="Alternar tema">
               <img class="icone" src="recursos/icones/icone-tecnologia.svg" alt="">
             </button>
-            <div class="avatar" aria-label="Avatar do jogador">
+            <button class="avatar" id="botao-perfil" type="button" aria-label="Perfil do jogador">
               <img class="icone" src="recursos/icones/icone-perfil.svg" alt="">
-            </div>
+            </button>
           </div>
         </header>
 
@@ -129,13 +190,6 @@
           <h3>Tempo por pergunta</h3>
           <div class="grade-opcoes" id="opcoes-tempo"></div>
         </section>
-        <label class="opcao-groq" for="usar-groq">
-          <input id="usar-groq" type="checkbox">
-          <span>
-            <strong>Gerar perguntas com Groq</strong>
-            <small>Usa a categoria, dificuldade e quantidade escolhidas.</small>
-          </span>
-        </label>
         <p class="mensagem-erro" id="erro-configuracao"></p>
         <button class="botao botao-primario" id="botao-iniciar-quiz" type="button">Começar quiz</button>
       </section>
@@ -156,7 +210,7 @@
             <span class="pergunta-categoria" id="categoria-pergunta">Games</span>
             <img class="icone" src="recursos/icones/icone-combo.svg" alt="">
           </div>
-          <h3 class="texto-pergunta" id="texto-pergunta">Carregando perguntas...</h3>
+          <h3 class="texto-pergunta" id="texto-pergunta"></h3>
           <div class="lista-alternativas" id="lista-alternativas"></div>
         </article>
         <section class="secao">
@@ -200,13 +254,57 @@
           <button class="botao botao-secundario" id="botao-limpar-dados" type="button">Limpar dados de teste</button>
         </article>
       </section>
+
+      <section id="tela-perfil" class="tela tela-perfil" aria-labelledby="titulo-perfil">
+        <header class="topo-tela">
+          <button class="botao botao-icone" type="button" data-voltar="tela-inicial" aria-label="Voltar"><img class="icone" src="recursos/icones/icone-voltar.svg" alt=""></button>
+          <h2 id="titulo-perfil">Perfil</h2>
+          <img class="icone" src="recursos/icones/icone-perfil.svg" alt="">
+        </header>
+
+        <article class="card painel-perfil">
+          <div class="perfil-cabecalho">
+            <div class="avatar avatar-grande">
+              <img class="icone icone-medio" src="recursos/icones/icone-perfil.svg" alt="">
+            </div>
+            <div>
+              <h3 id="perfil-nome">Jogador Arena</h3>
+              <p class="texto-suave">conta.demo@gmail.com</p>
+            </div>
+          </div>
+          <div class="grade-estatisticas">
+            <div class="card-estatistica"><span>Melhor pontuação</span><strong id="perfil-melhor-pontuacao">0</strong></div>
+            <div class="card-estatistica"><span>Partidas</span><strong id="perfil-partidas">0</strong></div>
+            <div class="card-estatistica"><span>Acertos</span><strong id="perfil-acertos">0</strong></div>
+            <div class="card-estatistica"><span>Sequência</span><strong id="perfil-sequencia">0</strong></div>
+          </div>
+        </article>
+
+        <section class="secao">
+          <h3>Preferências</h3>
+          <div class="lista-perfil">
+            <button class="item-perfil" id="botao-tema-perfil" type="button">
+              <span><strong>Tema</strong><small>Alternar claro e escuro</small></span>
+              <img class="icone icone-pequeno" src="recursos/icones/icone-tecnologia.svg" alt="">
+            </button>
+            <button class="item-perfil" type="button" data-navegar="tela-ranking">
+              <span><strong>Ranking</strong><small>Ver melhores pontuações locais</small></span>
+              <img class="icone icone-pequeno" src="recursos/icones/icone-ranking.svg" alt="">
+            </button>
+          </div>
+        </section>
+
+        <section class="secao">
+          <button class="botao botao-secundario" id="botao-sair-conta" type="button">Sair da conta demo</button>
+        </section>
+      </section>
     </main>
 
     <nav class="rodape-navegacao" aria-label="Navegação inferior">
       <button class="botao-nav ativo" type="button" data-navegar="tela-inicial"><img class="icone icone-pequeno" src="recursos/icones/icone-inicio.svg" alt="">Início</button>
       <button class="botao-nav" type="button" data-navegar="tela-categorias"><img class="icone icone-pequeno" src="recursos/icones/icone-explorar.svg" alt="">Explorar</button>
       <button class="botao-nav" type="button" data-navegar="tela-ranking"><img class="icone icone-pequeno" src="recursos/icones/icone-ranking.svg" alt="">Ranking</button>
-      <button class="botao-nav" type="button" data-navegar="tela-inicial"><img class="icone icone-pequeno" src="recursos/icones/icone-perfil.svg" alt="">Perfil</button>
+      <button class="botao-nav" type="button" data-navegar="tela-perfil"><img class="icone icone-pequeno" src="recursos/icones/icone-perfil.svg" alt="">Perfil</button>
     </nav>
   </div>
 

@@ -32,11 +32,14 @@
   justify-content: center;
   gap: 9px;
   min-width: 0;
+  max-width: 100%;
   color: var(--cor-texto);
   background: var(--cor-card-transparente);
   border: 1px solid var(--cor-borda);
   line-height: 1.15;
   text-align: center;
+  overflow-wrap: anywhere;
+  white-space: normal;
   transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
@@ -81,6 +84,7 @@
   font-size: 0.72rem;
   line-height: 1.1;
   overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .botao-nav.ativo {
@@ -117,7 +121,8 @@
 .card-estatistica strong {
   display: block;
   margin-top: 6px;
-  font-size: 1.35rem;
+  font-size: clamp(1.05rem, 7vw, 1.35rem);
+  overflow-wrap: anywhere;
 }
 
 .card-modo {
@@ -158,6 +163,7 @@
   padding: 0 14px;
   color: var(--cor-texto);
   background: var(--cor-card-transparente);
+  min-width: 0;
 }
 
 .card-categoria {
@@ -178,33 +184,6 @@
 .card-opcao.selecionado {
   border-color: var(--cor-primaria);
   box-shadow: var(--sombra-roxa);
-}
-
-.opcao-groq {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 12px;
-  align-items: center;
-  margin: 20px 0 8px;
-  padding: 14px;
-  border: 1px solid var(--cor-borda);
-  border-radius: 16px;
-  background: var(--cor-card-transparente);
-}
-
-.opcao-groq input {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--cor-primaria);
-}
-
-.opcao-groq span {
-  display: grid;
-  gap: 4px;
-}
-
-.opcao-groq small {
-  color: var(--cor-texto-suave);
 }
 
 .selo-check {
@@ -231,6 +210,10 @@
   text-align: left;
   white-space: normal;
   overflow-wrap: anywhere;
+}
+
+.alternativa span:last-child {
+  min-width: 0;
 }
 
 .letra {

@@ -1,47 +1,28 @@
-require("dotenv").config();
-
-const express = require("express");
-
-const app = express();
-const porta = Number(process.env.PORT || 3000);
 const modelo = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 
-app.use(express.json({ limit: "32kb" }));
-app.use((req, res, next) => {
-  const origem = req.headers.origin;
-  const origemPermitida = !origem || /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origem);
-  if (origemPermitida) {
-    res.setHeader("Access-Control-Allow-Origin", origem || "*");
-    res.setHeader("Vary", "Origin");
+module.exports = async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    return res.status(405).json({ erro: "Metodo nao permitido." });
   }
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  if (req.method === "OPTIONS") return res.sendStatus(204);
-  next();
-});
 
-app.get("/api/status", (req, res) => {
-  res.json({ ok: true, modelo });
-});
-
-app.post("/api/perguntas", async (req, res) => {
   try {
     if (!process.env.GROQ_API_KEY) {
-      return res.status(500).json({ erro: "Configure GROQ_API_KEY no arquivo .env." });
+      return res.status(500).json({ erro: "Configure GROQ_API_KEY nas variaveis de ambiente." });
     }
 
     const configuracao = normalizarConfiguracao(req.body);
     const perguntas = await gerarPerguntas(configuracao);
-    res.json({ perguntas });
+    return res.status(200).json({ perguntas });
   } catch (erro) {
-    res.status(400).json({ erro: erro.message || "Nao foi possivel gerar perguntas." });
+    return res.status(400).json({ erro: erro.message || "Nao foi possivel gerar perguntas." });
   }
-});
+};
 
 function normalizarConfiguracao(corpo) {
-  const categoria = String(corpo.categoria || "").trim();
-  const dificuldade = String(corpo.dificuldade || "").trim();
-  const quantidade = Number(corpo.quantidade);
+  const categoria = String(corpo?.categoria || "").trim();
+  const dificuldade = String(corpo?.dificuldade || "").trim();
+  const quantidade = Number(corpo?.quantidade);
 
   if (categoria.length < 3) throw new Error("Escolha uma categoria valida.");
   if (!["facil", "medio", "dificil"].includes(dificuldade)) throw new Error("Dificuldade invalida.");
@@ -118,11 +99,7 @@ function validarPerguntasGeradas(perguntas, configuracao) {
       pergunta: String(pergunta.pergunta),
       alternativas,
       respostaCorreta: String(pergunta.respostaCorreta),
-      explicacao: String(pergunta.explicacao || "Pergunta gerada pela Groq.")
+      explicacao: String(pergunta.explicacao || "Pergunta gerada.")
     };
   });
 }
-
-app.listen(porta, () => {
-  console.log(`API Arena Quiz Groq rodando em http://localhost:${porta}`);
-});

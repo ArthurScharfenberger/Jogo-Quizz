@@ -6,7 +6,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "api": "node servidor/server.js"
+    "api": "node servidor/server.js",
+    "check": "node --check api/perguntas.js && node --check servidor/server.js && node --check codigo/scripts/principal.js && node --check codigo/scripts/interface.js && node --check codigo/scripts/perguntas.js"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

@@ -19,6 +19,7 @@ const temposDoQuiz = [15, 18, 20];
 function mostrarTela(idTela) {
   document.querySelectorAll(".tela").forEach((tela) => tela.classList.remove("tela-ativa"));
   document.querySelector(`#${idTela}`)?.classList.add("tela-ativa");
+  document.querySelector(".aplicativo")?.classList.toggle("acesso-ativo", idTela === "tela-acesso");
   document.querySelector(".conteudo")?.scrollTo({ top: 0, left: 0 });
   document.querySelectorAll(".botao-nav").forEach((botao) => {
     botao.classList.toggle("ativo", botao.dataset.navegar === idTela);

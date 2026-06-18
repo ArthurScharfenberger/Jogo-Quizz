@@ -18,6 +18,7 @@
 }
 
 .linha-centro {
+  flex: 0 0 auto;
   gap: 8px;
 }
 
@@ -27,7 +28,7 @@
 
 .topo-tela {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  grid-template-columns: minmax(44px, auto) minmax(0, 1fr) minmax(44px, auto);
   gap: 12px;
   margin-bottom: 18px;
 }
@@ -48,6 +49,7 @@
 }
 
 .marca {
+  flex: 1 1 auto;
   min-width: 0;
   display: flex;
   align-items: center;
@@ -93,11 +95,11 @@
 
 .grade-atalhos,
 .grade-estatisticas {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grade-estatisticas {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grade-configuracoes {
@@ -120,11 +122,19 @@
   width: 100%;
   height: var(--altura-nav);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 4px;
   padding: 10px 12px 14px;
   background: rgba(10, 4, 18, 0.92);
   border-top: 1px solid var(--cor-borda);
   backdrop-filter: blur(16px);
   z-index: 20;
+}
+
+.aplicativo.acesso-ativo .conteudo {
+  padding-bottom: 22px;
+}
+
+.aplicativo.acesso-ativo .rodape-navegacao {
+  display: none;
 }

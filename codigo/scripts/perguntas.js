@@ -1,5 +1,8 @@
 let perguntasDisponiveis = [];
-const urlApiGroq = "http://localhost:3000/api/perguntas";
+const servidorLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const urlApiGroq = servidorLocal && window.location.port !== "3000"
+  ? "http://localhost:3000/api/perguntas"
+  : "/api/perguntas";
 
 const perguntasReserva = [
   { id: 901, categoria: "Games", dificuldade: "facil", pergunta: "Qual item costuma restaurar vida em muitos jogos de aventura?", alternativas: ["Mapa", "Poção", "Chave", "Moeda"], respostaCorreta: "Poção", explicacao: "Poções são usadas em muitos jogos para recuperar vida ou energia." },

@@ -39,10 +39,9 @@ function prepararPartida() {
       estadoQuiz.quantidadePerguntas
     );
   if (!perguntasSelecionadas.length) {
-    exibirMensagemErro("#erro-configuracao", "Não encontramos perguntas suficientes para essa configuração.");
     return;
   }
-  estadoQuiz.perguntasSelecionadas = perguntasSelecionadas;
+  estadoQuiz.perguntasSelecionadas = embaralharAlternativasDasPerguntas(perguntasSelecionadas);
   estadoQuiz.indicePerguntaAtual = 0;
   estadoQuiz.pontuacaoAtual = 0;
   estadoQuiz.acertos = 0;
@@ -54,6 +53,13 @@ function prepararPartida() {
 
   if (estadoQuiz.modoSelecionado === "duelo") iniciarDueloLocal();
   else iniciarPartidaSolo();
+}
+
+function embaralharAlternativasDasPerguntas(perguntas) {
+  return perguntas.map((pergunta) => ({
+    ...pergunta,
+    alternativas: embaralharLista(pergunta.alternativas)
+  }));
 }
 
 function iniciarPartidaSolo() {
